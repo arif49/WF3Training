@@ -1,0 +1,106 @@
+###
+ # File           : $Header: //depot/escenic/widget-framework/trunk/widget-framework-core-module/widget-framework-core/src/main/webapp/META-INF/escenic/publication-resources/0/escenic/section-parameter#1 $
+ # Last edited by : $Author: shaon $ $Date: 2009/06/22 $
+ # Version        : $Revision: #1 $
+ #
+ # Copyright (C) 2009 Escenic AS.
+ # All Rights Reserved.  No use, copying or distribution of this
+ # work may be made except in accordance with a valid license
+ # agreement from Escenic AS.  This notice must be included on
+ # all copies, modifications and derivatives of this work.
+###
+
+# Set this to true to enable the generation of <esi:include/> tags (Edge Side Includes)
+template.enableESI=false
+
+template.wireframe.markup.file=default
+theme.name=default
+theme.variant=variant
+theme.icon=favicon.png
+theme.icon.apple-touch-icon-114-precomposed=apple-touch-icon-114-precomposed.png
+theme.icon.apple-touch-icon-144-precomposed=apple-touch-icon-144-precomposed.png
+theme.icon.apple-touch-icon-57-precomposed=apple-touch-icon-57-precomposed.png
+theme.icon.apple-touch-icon-72-precomposed=apple-touch-icon-72-precomposed.png
+theme.icon.msapplication-TileColor=#FFFFFF
+theme.icon.msapplication-TileImage=windowsmetro-144.png
+
+# The following two parameters are required for article comments widget
+comments.unmoderated.forumId=
+comments.moderated.forumId=
+
+eae.logger.url=http://localhost:8080/analysis-logger/Logger
+eae.queryservice.url=http://localhost:8080/analysis-qs/QueryService
+eae.logger.tag.enabled=true
+
+# The maximum allowed level of nesting of layout groups
+nesting.limit=3
+
+# The maximum allowed level of nesting for master widget
+master.widget.nesting.limit=2
+
+# Turn jsp.statistics=on, if you want to enable JSP statistics
+jsp.statistics=off
+
+# Community-engine related section parameters
+usercontent.userProfile.articleTypeName=userProfile
+usercontent.userProfile.uniqueName=profile
+usercontent.news.uniqueName=content
+
+# Locale name. Decides the active resource bundle. Setting the local
+# to 'en_US' means that ApplicationResources_en.properties will be used.
+locale=en_US
+
+#wf designer mode theme upload parameter. Set value true if you want to enable theme uploading for designer
+wf.template.designermode=
+
+#required parameter for content profile and responsive images
+#for making older publication to work you can set 'config' as the root for default content profile like
+#wf.contentprofile.default.rootConfig=config
+wf.contentprofile.default.rootConfig=config.default
+wf.contentprofile.default.image.breakpoints.fluid=320,480,640,767
+wf.contentprofile.default.image.grid.refViewportWidth=1140
+wf.contentprofile.default.image.grid.gridViewportWidth=1140
+wf.contentprofile.default.image.policy=adaptive
+wf.contentprofile.default.image.preload=placeholder
+wf.contentprofile.default.image.proxy.size.min=80
+wf.contentprofile.default.image.proxy.size.max=200
+wf.contentprofile.default.image.proxy.size.scale=30
+wf.contentprofile.default.image.proxy.enable.imagesize.min=200
+
+wf.contentprofile.default.wireframe=default
+
+# This configuration is to show content item inline in the section context
+wf.contentprofile.inline.rootConfig=config.inline
+wf.contentprofile.inline.wireframe=inline
+wf.contentprofile.inline.image.policy=adaptive
+wf.contentprofile.inline.image.preload=placeholder
+
+#Example configuration for newsletter as content profile
+#wf.contentprofile.newsletter.rootConfig=config.newsletter
+#wf.contentprofile.newsletter.image.breakpoints.fluid=320,480,640,767
+#wf.contentprofile.newsletter.image.grid.refViewportWidth=960
+#wf.contentprofile.newsletter.image.policy=picturefill
+#wf.contentprofile.newsletter.wireframe=mynewsletter
+
+#facebook app id for facebook share, like, comments
+facebook.app.id=
+
+#Set user readable publication title
+publication.title=
+
+wf.clienttype.large=(min-width: 992px)
+wf.clienttype.small=(max-width: 767px)
+wf.clienttype.medium=(min-width: 768px) and (max-width: 991px)
+
+# The root URL of static resources when loading from a different location(e.g. CDN) other than publication
+wf.resource.static.rootUrl=
+
+#configure if holder.js is included or not
+wf.script.holder.enabled=true
+
+# Configures if JS files in 'jscript' folder will be loaded individually, as opposed to single merged script
+wf.scriptload.devmode=false
+
+# Configure to let search engine- index the section page/follow links on the page
+seo.section.allowIndex=true
+seo.section.followlinks=true

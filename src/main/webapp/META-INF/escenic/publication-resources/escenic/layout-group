@@ -1,0 +1,3669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="http://xmlns.escenic.com/2008/layout-group" xmlns:ct="http://xmlns.escenic.com/2008/content-type" xmlns:wf="http://xmlns.escenic.com/2014/wf-config" xmlns:ui="http://xmlns.escenic.com/2008/interface-hints">
+  <group name="content" root="true">
+    <ui:label>Content</ui:label>
+    <ct:options>
+      <ct:field name="custom_config_section" type="collection" mime-type="text/plain" src="/webservice-extensions/wf/collection/config-sections.jsp" select="content">
+        <ui:label>Custom Config Section</ui:label>
+        <ui:description>The config sections of the publication</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="contentArea">
+      <ref-group name="header" />
+      <ref-group name="top" />
+      <ref-group name="left" />
+      <ref-group name="topStories" />
+      <ref-group name="featuredStories" />
+      <ref-group name="carousel" />
+      <ref-group name="stats" />
+      <ref-group name="main" />
+      <ref-group name="grid" />
+      <ref-group name="curatedView" />
+      <ref-group name="right" />
+      <ref-group name="bottom" />
+      <ref-group name="footer" />
+      <ref-group name="master" />
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+    <area name="anotherContentArea">
+      <ref-group name="header" />
+      <ref-group name="top" />
+      <ref-group name="left" />
+      <ref-group name="topStories" />
+      <ref-group name="featuredStories" />
+      <ref-group name="carousel" />
+      <ref-group name="stats" />
+      <ref-group name="main" />
+      <ref-group name="grid" />
+      <ref-group name="curatedView" />
+      <ref-group name="right" />
+      <ref-group name="bottom" />
+      <ref-group name="footer" />
+      <ref-group name="master" />
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="config" root="true">
+    <ui:label>Config</ui:label>
+    <wf:config />
+    <ct:options>
+      <ct:field name="inherits_from" type="basic" mime-type="text/plain">
+        <ui:label>Inherits From</ui:label>
+        <ui:description>Custom configuration section name or id</ui:description>
+      </ct:field>
+      <ct:field name="area_split" type="enumeration">
+        <ui:label>Main and Aside area split ratio</ui:label>
+        <ui:description>Select the split ratio</ui:description>
+        <ct:enumeration value="12_0">
+          <ui:label>No Aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="9_3">
+          <ui:label>9/3</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="8_4">
+          <ui:label>8/4</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="6_6">
+          <ui:label>6/6</ui:label>
+        </ct:enumeration>
+        <!--<ct:enumeration value="4_8">
+          <ui:label>33/66</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="3_9">
+          <ui:label>25/75</ui:label>
+        </ct:enumeration>-->
+        <ui:value-if-unset>8_4</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="asidePosition" type="enumeration">
+        <ui:label>Aside position</ui:label>
+        <ui:description>Select position of the aside area</ui:description>
+        <ct:enumeration value="left">
+          <ui:label>Left</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="right">
+          <ui:label>Right</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>right</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <ui:decorator name="wfItemsResolver" />
+    <area name="meta">
+      <allow-content-types>
+        <ref-content-type-group name="meta-widgets" />
+        <ref-content-type-group name="custom-meta-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="outer">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="header">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>header</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="top">
+      <ct:options scope="current">
+        <ct:field name="showTopArea" type="enumeration">
+          <ui:label>Show top area</ui:label>
+          <ui:description>Display top area of the page</ui:description>
+          <ct:enumeration value="true">
+            <ui:label>Yes</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="false">
+            <ui:label>No</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>true</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="main">
+      <ui:label>Main</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>section</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="aside">
+      <ui:label>Aside</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>aside</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="bottom">
+      <ct:options scope="current">
+        <ct:field name="showBottomArea" type="enumeration">
+          <ui:label>Show bottom area</ui:label>
+          <ui:description>Display bottom area of the page</ui:description>
+          <ct:enumeration value="true">
+            <ui:label>Yes</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="false">
+            <ui:label>No</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>true</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="footer">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>footer</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="row">
+    <ui:label>Row</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the style group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the style group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="row-area">
+      <ref-group name="column" />
+    </area>
+  </group>
+  <group name="column">
+    <ui:label>Column</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="span" type="enumeration">
+        <ui:label>Columns to span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ct:enumeration value="12" />
+        <ui:value-if-unset>6</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the style group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the style group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="column-area">
+      <ref-group name="row" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+    </area>
+  </group>
+  <group name="split-2">
+    <ui:label>Two column</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="split" type="enumeration">
+        <ui:label>Split ratio</ui:label>
+        <ui:description>Select the split ratio</ui:description>
+        <ct:enumeration value="3_9">
+          <ui:label>3/9</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="4_8">
+          <ui:label>4/8</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="6_6">
+          <ui:label>6/6</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="8_4">
+          <ui:label>8/4</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="9_3">
+          <ui:label>9/3</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="custom">
+          <ui:label>Custom</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>6_6</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for wrapped content inside the wrap group</ui:description>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for wrapped content inside the wrap group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="column-1">
+      <ui:label>Column 1</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+        <ct:field name="column-1-span" type="enumeration">
+          <ui:label>Custom column 1</ui:label>
+          <ui:description>How many span column one will take</ui:description>
+          <ct:enumeration value="inherited">
+            <ui:label>Inherited</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="1" />
+          <ct:enumeration value="2" />
+          <ct:enumeration value="3" />
+          <ct:enumeration value="4" />
+          <ct:enumeration value="5" />
+          <ct:enumeration value="6" />
+          <ct:enumeration value="7" />
+          <ct:enumeration value="8" />
+          <ct:enumeration value="9" />
+          <ct:enumeration value="10" />
+          <ct:enumeration value="11" />
+          <ct:enumeration value="12" />
+          <ui:value-if-unset>inherited</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="column-1-styleId" type="basic" mime-type="text/plain">
+          <ui:label>Style Id</ui:label>
+          <ui:description>Style id for column one</ui:description>
+        </ct:field>
+        <ct:field name="column-1-styleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style Class</ui:label>
+          <ui:description>Style class for column one</ui:description>
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="column-2">
+      <ui:label>Column 2</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+        <ct:field name="column-2-span" type="enumeration">
+          <ui:label>Custom column 2</ui:label>
+          <ui:description>How many span column two will take</ui:description>
+          <ct:enumeration value="inherited">
+            <ui:label>Inherited</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="1" />
+          <ct:enumeration value="2" />
+          <ct:enumeration value="3" />
+          <ct:enumeration value="4" />
+          <ct:enumeration value="5" />
+          <ct:enumeration value="6" />
+          <ct:enumeration value="7" />
+          <ct:enumeration value="8" />
+          <ct:enumeration value="9" />
+          <ct:enumeration value="10" />
+          <ct:enumeration value="11" />
+          <ct:enumeration value="12" />
+          <ui:value-if-unset>inherited</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="column-2-styleId" type="basic" mime-type="text/plain">
+          <ui:label>Style Id</ui:label>
+          <ui:description>Style id for column two</ui:description>
+        </ct:field>
+        <ct:field name="column-2-styleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style Class</ui:label>
+          <ui:description>Style class for column two</ui:description>
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="split-3">
+    <ui:label>Three column</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="split" type="enumeration">
+        <ui:label>Split ratio</ui:label>
+        <ui:description>Select the split ratio</ui:description>
+        <ct:enumeration value="3_3_6">
+          <ui:label>3/3/6</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="3_6_3">
+          <ui:label>3/6/3</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="4_4_4">
+          <ui:label>4/4/4</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="6_3_3">
+          <ui:label>6/3/3</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="custom">
+          <ui:label>Custom</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>4_4_4</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for wrapped content inside the wrap group</ui:description>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for wrapped content inside the wrap group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="column-1">
+      <ui:label>Column 1</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+        <ct:field name="column-1-span" type="enumeration">
+          <ui:label>Custom column 1</ui:label>
+          <ui:description>How many span column one will take</ui:description>
+          <ct:enumeration value="inherited">
+            <ui:label>Inherited</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="1" />
+          <ct:enumeration value="2" />
+          <ct:enumeration value="3" />
+          <ct:enumeration value="4" />
+          <ct:enumeration value="5" />
+          <ct:enumeration value="6" />
+          <ct:enumeration value="7" />
+          <ct:enumeration value="8" />
+          <ct:enumeration value="9" />
+          <ct:enumeration value="10" />
+          <ct:enumeration value="11" />
+          <ct:enumeration value="12" />
+          <ui:value-if-unset>inherited</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="column-1-styleId" type="basic" mime-type="text/plain">
+          <ui:label>Style Id</ui:label>
+          <ui:description>Style id for column one</ui:description>
+        </ct:field>
+        <ct:field name="column-1-styleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style Class</ui:label>
+          <ui:description>Style class for column two</ui:description>
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="column-2">
+      <ref-group name="row" />
+      <ui:label>Column 2</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+        <ct:field name="column-2-span" type="enumeration">
+          <ui:label>Custom column 2</ui:label>
+          <ui:description>How many span column two will take</ui:description>
+          <ct:enumeration value="inherited">
+            <ui:label>Inherited</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="1" />
+          <ct:enumeration value="2" />
+          <ct:enumeration value="3" />
+          <ct:enumeration value="4" />
+          <ct:enumeration value="5" />
+          <ct:enumeration value="6" />
+          <ct:enumeration value="7" />
+          <ct:enumeration value="8" />
+          <ct:enumeration value="9" />
+          <ct:enumeration value="10" />
+          <ct:enumeration value="11" />
+          <ct:enumeration value="12" />
+          <ui:value-if-unset>inherited</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="column-2-styleId" type="basic" mime-type="text/plain">
+          <ui:label>Style Id</ui:label>
+          <ui:description>Style id for column two</ui:description>
+        </ct:field>
+        <ct:field name="column-2-styleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style Class</ui:label>
+          <ui:description>Style class for column two</ui:description>
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+    <area name="column-3">
+      <ui:label>Column 3</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+        <ct:field name="column-3-span" type="enumeration">
+          <ui:label>Custom column 3</ui:label>
+          <ui:description>How many span column three will take</ui:description>
+          <ct:enumeration value="inherited">
+            <ui:label>Inherited</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="1" />
+          <ct:enumeration value="2" />
+          <ct:enumeration value="3" />
+          <ct:enumeration value="4" />
+          <ct:enumeration value="5" />
+          <ct:enumeration value="6" />
+          <ct:enumeration value="7" />
+          <ct:enumeration value="8" />
+          <ct:enumeration value="9" />
+          <ct:enumeration value="10" />
+          <ct:enumeration value="11" />
+          <ct:enumeration value="12" />
+          <ui:value-if-unset>inherited</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="column-3-styleId" type="basic" mime-type="text/plain">
+          <ui:label>Style Id</ui:label>
+          <ui:description>Style id for column three</ui:description>
+        </ct:field>
+        <ct:field name="column-3-styleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style Class</ui:label>
+          <ui:description>Style class for column three</ui:description>
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="master-config" root="true">
+    <ui:label>Master config</ui:label>
+    <wf:config />
+    <ct:options>
+      <ct:field name="inherits_from" type="basic" mime-type="text/plain">
+        <ui:label>Inherits From</ui:label>
+        <ui:description>Custom configuration section name or id</ui:description>
+      </ct:field>
+    </ct:options>
+    <ui:decorator name="wfItemsResolver" />
+    <area name="master-config-area">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="inline-config" root="true">
+    <ui:label>Inline config</ui:label>
+    <wf:config />
+    <ct:options>
+      <ct:field name="inherits_from" type="basic" mime-type="text/plain">
+        <ui:label>Inherits From</ui:label>
+        <ui:description>Custom configuration section name or id</ui:description>
+      </ct:field>
+    </ct:options>
+    <ui:decorator name="wfItemsResolver" />
+    <area name="inline-config-area">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="htmlTag">
+          <ui:label>HTML tag</ui:label>
+          <ct:enumeration value="article">
+            <ui:label>article</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="aside">
+            <ui:label>aside</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="div">
+            <ui:label>div</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="header">
+            <ui:label>header</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="footer">
+            <ui:label>footer</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="section">
+            <ui:label>section</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>div</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="areaStyleClass" type="basic" mime-type="text/plain">
+          <ui:label>Style class</ui:label>
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="menuGroup">
+    <ui:label>Menu</ui:label>
+    <ct:options>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the menu group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the menu group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="menuGroup-area">
+      <ref-group name="menuPaneGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="menuPaneGroup">
+    <ui:label>Menu pane</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="linkText" type="basic" mime-type="text/plain">
+        <ui:label>Link Text</ui:label>
+        <ui:description>Link Text</ui:description>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Custom Style Class</ui:label>
+        <ui:description>Custom style class for the menu pane group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the menu pane group</ui:description>
+      </ct:field>
+      <ct:field name="reference" type="enumeration">
+        <ui:label>Reference</ui:label>
+        <ui:description>This field decides which item the menu pane will point to</ui:description>
+        <ct:enumeration value="sectionUniqueName">
+          <ui:label>Section Unique Name</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="url">
+          <ui:label>URL</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="articleId">
+          <ui:label>Article Id</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="menu">
+          <ui:label>Sections in menu</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>sectionUniqueName</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="sectionUniqueName" type="basic" mime-type="text/plain">
+        <ui:label>Section Unique Name</ui:label>
+        <ui:description>The unique name of the section which the menu pane will point to</ui:description>
+      </ct:field>
+      <ct:field name="url" type="uri">
+        <ui:label>URL</ui:label>
+        <ui:description>The URL which the menu pane will point to</ui:description>
+      </ct:field>
+      <ct:field name="articleId" type="number">
+        <ui:label>Article Id</ui:label>
+        <ui:description>The id of the article which the menu pane will point to</ui:description>
+        <ct:constraints>
+          <ct:minimum>1</ct:minimum>
+        </ct:constraints>
+        <ct:format>######</ct:format>
+      </ct:field>
+      <ct:field name="menuName" type="basic" mime-type="text/plain">
+        <ui:label>Menu name</ui:label>
+        <ui:description>Text field to input menu name in order to find sections.</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="menuPaneGroup-area">
+      <ref-group name="wrapperGroup" />
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="tabbingGroup">
+    <ui:label>Tabs</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="changeUrl" type="boolean">
+        <ui:label>Change url</ui:label>
+        <ui:boolean-label value="true">Chage url with changing tab</ui:boolean-label>
+        <ui:boolean-label value="false">Don't chage url with changing tab</ui:boolean-label>
+        <ui:value-if-unset>true</ui:value-if-unset>
+        <constraints>
+          <required>true</required>
+        </constraints>
+      </ct:field>
+      <ct:field name="tabStyle" type="enumeration">
+        <ui:label>Tab style</ui:label>
+        <ui:description>The style of the tab</ui:description>
+        <ct:enumeration value="tabs">
+          <ui:label>Tabs</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="pills">
+          <ui:label>Pills</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>tabs</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the tab group</ui:description>
+      </ct:field>
+      <ct:field name="tabContentStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Tab content style class</ui:label>
+        <ui:description>Custom style class for the tab content element</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="tabbingGroup-area">
+      <ref-group name="tabPaneGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="carouselGroup">
+    <ui:label>Carousel</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="showNavigation" type="boolean">
+        <ui:label>Indicator</ui:label>
+        <ui:boolean-label value="true">Show slide navigation indicator</ui:boolean-label>
+        <ui:boolean-label value="false">Don't show slide navigation indicator</ui:boolean-label>
+        <ui:value-if-unset>true</ui:value-if-unset>
+        <constraints>
+          <required>true</required>
+        </constraints>
+      </ct:field>
+      <ct:field name="showPreviousNext" type="boolean">
+        <ui:label>Navigation</ui:label>
+        <ui:boolean-label value="true">Show slide navigation buttons</ui:boolean-label>
+        <ui:boolean-label value="false">Don't show slide navigation buttons</ui:boolean-label>
+        <ui:value-if-unset>true</ui:value-if-unset>
+        <constraints>
+          <required>true</required>
+        </constraints>
+      </ct:field>
+      <ct:field name="autoplay" type="boolean">
+        <ui:label>Autoplay</ui:label>
+        <ui:boolean-label value="true">Turn on autoplay</ui:boolean-label>
+        <ui:boolean-label value="false">Turn off autoplay</ui:boolean-label>
+        <ui:value-if-unset>false</ui:value-if-unset>
+        <constraints>
+          <required>true</required>
+        </constraints>
+      </ct:field>
+      <ct:field name="autoplayInterval" type="number">
+        <ui:label>Autoplay interval</ui:label>
+        <ui:description>Autoplay interval (in seconds)</ui:description>
+        <ct:constraints>
+          <ct:minimum>1</ct:minimum>
+        </ct:constraints>
+        <ui:value-if-unset>5</ui:value-if-unset>
+        <ct:format>##</ct:format>
+      </ct:field>
+      <ct:field name="heightOption" type="enumeration">
+        <ui:label>Height option</ui:label>
+        <ui:description>The height option of the carousel group</ui:description>
+        <ct:enumeration value="auto">
+          <ui:label>Auto</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="fixed">
+          <ui:label>Fixed</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>auto</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="height" type="number">
+        <ui:label>Height (px)</ui:label>
+        <ui:description>Height of the carousel group</ui:description>
+        <ct:constraints>
+          <ct:minimum>100</ct:minimum>
+        </ct:constraints>
+        <ui:value-if-unset>100</ui:value-if-unset>
+        <ct:format>####</ct:format>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the carousel group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the carousel group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="carouselGroup-area">
+      <ref-group name="tabPaneGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="tabPaneGroup">
+    <ui:label>Pane</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="footer">
+          <ui:label>footer</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="title" type="basic" mime-type="text/plain">
+        <ui:label>Title</ui:label>
+        <ui:description>The title of the pane group</ui:description>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the tab pane group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the tab pane group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="tabPaneGroup-area">
+      <!-- main area groups -->
+      <ref-group name="wrapperGroup" />
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="contextSectionGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="header">
+    <ui:label>Header</ui:label>
+    <area name="header-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="top">
+    <ui:label>Top</ui:label>
+    <area name="top-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="main">
+    <ui:label>Main</ui:label>
+    <area name="main-area">
+      <ct:options>
+        <ct:field name="teaserOptions" type="enumeration">
+          <ui:label>Teaser Options</ui:label>
+          <ui:description>Teaser Options to customize the appearance of article teasers</ui:description>
+          <ct:enumeration value="default">
+            <ui:label>Default</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="breakingNews">
+            <ui:label>Breaking News</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="exclusive">
+            <ui:label>Exclusive</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>default</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="curatedView">
+    <ui:label>Curated view</ui:label>
+    <ct:options scope="current">
+      <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+        <ui:label>Use view</ui:label>
+        <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+      </ct:field>
+      <ct:field name="imageVariant" type="enumeration">
+        <ui:label>Image</ui:label>
+        <ui:description>Which aspect ratio will be applied to image</ui:description>
+        <ct:enumeration value="LANDSCAPE">
+          <ui:label>Landscape</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="PORTRAIT">
+          <ui:label>Portrait</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="SQUARE">
+          <ui:label>Square</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="WIDE">
+          <ui:label>Wide</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="FREE">
+          <ui:label>Free</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="HIDE">
+          <ui:label>Hide</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="unspecified">
+          <ui:label>Please choose</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>unspecified</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+        <ui:label>Teaser style</ui:label>
+        <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+      </ct:field>
+      <ct:field name="titleSize" type="enumeration">
+        <ui:label>Title size</ui:label>
+        <ui:description>Modifies the text size of the title.</ui:description>
+        <ct:enumeration value="text-biggest">
+          <ui:label>Biggest</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-bigger">
+          <ui:label>Bigger</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-big">
+          <ui:label>Big</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="regular">
+          <ui:label>Regular</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-small">
+          <ui:label>Small</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-smaller">
+          <ui:label>Smaller</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-smallest">
+          <ui:label>Smallest</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="unspecified">
+          <ui:label>Please specify</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>unspecified</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="leadTextSize" type="enumeration">
+        <ui:label>Lead text size</ui:label>
+        <ui:description>Modifies the text size of the lead text.</ui:description>
+        <ct:enumeration value="text-biggest">
+          <ui:label>Biggest</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-bigger">
+          <ui:label>Bigger</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-big">
+          <ui:label>Big</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="regular">
+          <ui:label>Regular</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-small">
+          <ui:label>Small</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-smaller">
+          <ui:label>Smaller</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="text-smallest">
+          <ui:label>Smallest</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="unspecified">
+          <ui:label>Please specify</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>unspecified</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="curated-view-area">
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="topStories">
+    <ui:label>Top stories</ui:label>
+    <area name="topStories-area">
+      <ct:options>
+        <ct:field name="teaserOptions" type="enumeration">
+          <ui:label>Teaser Options</ui:label>
+          <ui:description>Teaser Options to customize the appearance of article teasers</ui:description>
+          <ct:enumeration value="default">
+            <ui:label>Default</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="breakingNews">
+            <ui:label>Breaking News</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="exclusive">
+            <ui:label>Exclusive</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>default</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="featuredStories">
+    <ui:label>Featured stories</ui:label>
+    <area name="featuredStories-area">
+      <ct:options>
+        <ct:field name="teaserOptions" type="enumeration">
+          <ui:label>Teaser Options</ui:label>
+          <ui:description>Teaser Options to customize the appearance of article teasers</ui:description>
+          <ct:enumeration value="default">
+            <ui:label>Default</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="breakingNews">
+            <ui:label>Breaking News</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="exclusive">
+            <ui:label>Exclusive</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>default</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="carousel">
+    <ui:label>Carousel</ui:label>
+    <area name="carousel-area">
+      <ct:options>
+        <ct:field name="teaserOptions" type="enumeration">
+          <ui:label>Teaser Options</ui:label>
+          <ui:description>Teaser Options to customize the appearance of article teasers</ui:description>
+          <ct:enumeration value="default">
+            <ui:label>Default</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="breakingNews">
+            <ui:label>Breaking News</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="exclusive">
+            <ui:label>Exclusive</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>default</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="stats">
+    <ui:label>Stats</ui:label>
+    <area name="stats-area">
+      <ct:options>
+        <ct:field name="teaserOptions" type="enumeration">
+          <ui:label>Teaser Options</ui:label>
+          <ui:description>Teaser Options to customize the appearance of article teasers</ui:description>
+          <ct:enumeration value="default">
+            <ui:label>Default</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="breakingNews">
+            <ui:label>Breaking News</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="exclusive">
+            <ui:label>Exclusive</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>default</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="left">
+    <ui:label>Left</ui:label>
+    <area name="left-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="right">
+    <ui:label>Right</ui:label>
+    <area name="right-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="bottom">
+    <ui:label>Bottom</ui:label>
+    <area name="bottom-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="footer">
+    <ui:label>Footer</ui:label>
+    <area name="footer-area">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="wrapperGroup">
+    <ui:label>Wrapper</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="aside">
+          <ui:label>aside</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="header">
+          <ui:label>header</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="section">
+          <ui:label>section</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="article">
+          <ui:label>article</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="ul">
+          <ui:label>ul</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>div</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="customStyleClass" type="basic" mime-type="text/plain">
+        <ui:label>Style class</ui:label>
+        <ui:description>Custom style class for the wrapper group</ui:description>
+      </ct:field>
+      <ct:field name="styleId" type="basic" mime-type="text/plain">
+        <ui:label>Style Id</ui:label>
+        <ui:description>Style id for the wrapper group</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="wrapperGroup-area">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <ref-group name="tabbingGroup" />
+      <ref-group name="carouselGroup" />
+      <ref-group name="navbar" />
+      <ref-group name="wrapperGroup" />
+      <ref-group name="collapseGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="master">
+    <ui:label>Master</ui:label>
+    <ct:options>
+      <ct:field name="masterconfig" type="enumeration">
+        <ui:label>Master Config</ui:label>
+        <ui:description>Master configuration option for the group</ui:description>
+        <ct:enumeration value="auto">
+          <ui:label>Auto</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="master1">
+          <ui:label>Master 1</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="master2">
+          <ui:label>Master 2</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="master3">
+          <ui:label>Master 3</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>auto</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="master-area">
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on lazy loading for</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="navbar">
+    <ui:label>Navbar</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="htmlTag">
+        <ui:label>HTML tag</ui:label>
+        <ct:enumeration value="nav">
+          <ui:label>nav</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="div">
+          <ui:label>div</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>nav</ui:value-if-unset>
+      </ct:field>
+      <ct:field type="enumeration" name="navbarStyle">
+        <ui:label>Navbar style</ui:label>
+        <ct:enumeration value="navbar-default">
+          <ui:label>Default</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="navbar-inverse">
+          <ui:label>Inverse</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="custom">
+          <ui:label>Custom</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>navbar-default</ui:value-if-unset>
+      </ct:field>
+      <ct:field type="enumeration" name="navbarPostion">
+        <ui:label>Navbar postion</ui:label>
+        <ct:enumeration value="no-class">
+          <ui:label>Scroll</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="navbar-fixed-top">
+          <ui:label>Fixed on top</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="navbar-fixed-bottom">
+          <ui:label>Fixed at bottom</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>no-class</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="customNavbarStyle" type="basic" mime-type="text/plain">
+        <ui:label>Custom navbar style class</ui:label>
+        <ui:description>The style classes for Bootstrap navbar(e.g. 'navbar-inverse').
+          The default is 'navbar-default'.</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="nav">
+      <ui:label>Nav</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="menuGroup" />
+      <ref-group name="collapseGroup" />
+      <ref-group name="wrapperGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="collapseGroup">
+    <ui:label>Collapse</ui:label>
+    <area name="collapse">
+      <ui:label>Collapse Area</ui:label>
+      <ct:options scope="current">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ct:options scope="items">
+        <ct:field type="enumeration" name="loadingPolicy">
+          <ui:label>Lazy loading</ui:label>
+          <ct:enumeration value="onPage">
+            <ui:label>Disabled</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="lazy">
+            <ui:label>Enabled</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>onPage</ui:value-if-unset>
+        </ct:field>
+        <ct:field type="enumeration" name="skipLoadingOn" multiple="true">
+          <ui:label>Skip on device</ui:label>
+          <ct:enumeration value="large">
+            <ui:label>Large</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="medium">
+            <ui:label>Medium</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+        </ct:field>
+        <ct:field name="fragmentToken" type="basic" mime-type="text/plain">
+          <ui:label>Fragment Token</ui:label>
+          <ui:hidden />
+        </ct:field>
+      </ct:options>
+      <ref-group name="menuGroup" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="contextSectionGroup">
+    <ui:label>Context section</ui:label>
+    <ct:options>
+      <ct:field type="enumeration" name="reference">
+        <ui:label>Use</ui:label>
+        <!--<ct:enumeration value="section">-->
+        <!--<ui:label>Specific section</ui:label>-->
+        <!--</ct:enumeration>-->
+        <ct:enumeration value="menu">
+          <ui:label>Sections in menu</ui:label>
+        </ct:enumeration>
+        <ct:enumeration value="articleHome">
+          <ui:label>Home section of context article</ui:label>
+        </ct:enumeration>
+        <ui:value-if-unset>menu</ui:value-if-unset>
+      </ct:field>
+      <!--<ct:field name="contentSection" type="collection" mime-type="text/plain" select="title"-->
+      <!--src="/webservice-extensions/wf/open-search/content-sections.jsp">-->
+      <!--<ui:label>Section</ui:label>-->
+      <!--<ui:description>Collection field to choose a specific content section</ui:description>-->
+      <!--</ct:field>-->
+      <ct:field name="menuName" type="basic" mime-type="text/plain">
+        <ui:label>Menu name</ui:label>
+        <ui:description>Text field to input menu name in order to find sections.</ui:description>
+      </ct:field>
+    </ct:options>
+    <area name="contextSection-area">
+      <ref-group name="wrapperGroup" />
+      <ref-group name="row" />
+      <ref-group name="split-2" />
+      <ref-group name="split-3" />
+      <allow-content-types>
+        <ref-content-type-group name="core-widgets" />
+        <ref-content-type-group name="custom-widgets" />
+        <ref-content-type-group name="community-widgets" />
+      </allow-content-types>
+    </area>
+  </group>
+  <content-type-group name="core-widgets">
+    <ref-content-type name="widget_breadcrumb" />
+    <ref-content-type name="widget_code" />
+    <ref-content-type name="widget_viewPicker" />
+    <ref-content-type name="widget_contentInfo" />
+    <ref-content-type name="widget_contentField" />
+    <ref-content-type name="widget_contentBody" />
+    <ref-content-type name="widget_searchConfig" />
+    <ref-content-type name="widget_heading" />
+    <ref-content-type name="widget_master" />
+    <ref-content-type name="widget_media" />
+    <ref-content-type name="widget_menu" />
+    <ref-content-type name="widget_teaser" />
+    <ref-content-type name="widget_searchComponent" />
+    <ref-content-type name="widget_tags" />
+  </content-type-group>
+  <content-type-group name="community-widgets">
+    <ref-content-type name="widget_actionLinks" />
+    <ref-content-type name="widget_blogNavigation" />
+    <ref-content-type name="widget_blogUserList" />
+    <ref-content-type name="widget_contentActions" />
+    <ref-content-type name="widget_favoritesList" />
+    <ref-content-type name="widget_forum" />
+    <ref-content-type name="widget_mostPopular" />
+    <ref-content-type name="widget_profile" />
+    <ref-content-type name="widget_profileActions" />
+    <ref-content-type name="widget_profileMenu" />
+    <ref-content-type name="widget_rating" />
+    <ref-content-type name="widget_userActivity" />
+    <ref-content-type name="widget_userContentManager" />
+  </content-type-group>
+  <content-type-group name="meta-widgets">
+    <ref-content-type name="widget_master" />
+    <ref-content-type name="widget_searchConfig" />
+    <ref-content-type name="widget_code" />
+    <ref-content-type name="widget_pageMeta" />
+  </content-type-group>
+  <content-type-group name="contents">
+    <ref-content-type name="story" />
+    <ref-content-type name="picture" />
+    <ref-content-type name="media" />
+    <ref-content-type name="document" />
+    <ref-content-type name="link" />
+    <ref-content-type name="gallery" />
+    <ref-content-type name="forum" />
+    <ref-content-type name="topic" />
+    <ref-content-type name="com.escenic.list" />
+    <ref-content-type name="audio" />
+    <ref-content-type name="audioIngest" />
+    <ref-content-type name="audioFile" />
+    <ref-content-type name="video" />
+    <ref-content-type name="videoIngest" />
+    <ref-content-type name="videoFile" />
+    <ref-content-type name="wf_datasource" />
+  </content-type-group>
+  <group name="grid">
+    <ui:label>Grid</ui:label>
+    <area name="gridArea">
+      <ref-group name="gridTwoCol" />
+      <ref-group name="gridThreeCol" />
+      <ref-group name="gridRow" />
+      <ref-group name="gridOnePlusN" />
+      <ref-group name="gridNPlusOne" />
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="gridTwoCol">
+    <ui:label>Two column</ui:label>
+    <ct:options scope="current">
+      <ct:field name="col1span" type="enumeration">
+        <ui:label>1st column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>6</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="gridTwoColArea">
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="gridThreeCol">
+    <ui:label>Three column</ui:label>
+    <ct:options scope="current">
+      <ct:field name="col1span" type="enumeration">
+        <ui:label>1st column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>4</ui:value-if-unset>
+      </ct:field>
+      <ct:field name="col2span" type="enumeration">
+        <ui:label>2nd column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>4</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="gridThreeColArea">
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+    </area>
+  </group>
+  <group name="gridRow">
+    <ui:label>Row</ui:label>
+    <area name="gridRowArea">
+      <ref-group name="gridColumn" />
+    </area>
+  </group>
+  <group name="gridColumn">
+    <ui:label>Column</ui:label>
+    <ct:options scope="current">
+      <ct:field name="colspan" type="enumeration">
+        <ui:label>Column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>6</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="gridColumnArea">
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+      <ref-group name="gridTwoCol" />
+      <ref-group name="gridThreeCol" />
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+    </area>
+  </group>
+  <group name="gridOnePlusN">
+    <ui:label>Two column (1 + N)</ui:label>
+    <ct:options scope="current">
+      <ct:field name="col1span" type="enumeration">
+        <ui:label>1st column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>6</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="gridTwoColArea">
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <group name="gridNPlusOne">
+    <ui:label>Two column (N + 1)</ui:label>
+    <ct:options scope="current">
+      <ct:field name="col1span" type="enumeration">
+        <ui:label>1st column span</ui:label>
+        <ui:description>How many columns to span</ui:description>
+        <ct:enumeration value="1" />
+        <ct:enumeration value="2" />
+        <ct:enumeration value="3" />
+        <ct:enumeration value="4" />
+        <ct:enumeration value="5" />
+        <ct:enumeration value="6" />
+        <ct:enumeration value="7" />
+        <ct:enumeration value="8" />
+        <ct:enumeration value="9" />
+        <ct:enumeration value="10" />
+        <ct:enumeration value="11" />
+        <ui:value-if-unset>6</ui:value-if-unset>
+      </ct:field>
+    </ct:options>
+    <area name="gridTwoColArea">
+      <ct:options>
+        <ct:field name="customView" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/config/view/selectable" select="content">
+          <ui:label>Use view</ui:label>
+          <ui:description>The custom view to be used for rendering this teaser.</ui:description>
+        </ct:field>
+        <ct:field name="imageVariant" type="enumeration">
+          <ui:label>Image</ui:label>
+          <ui:description>Which aspect ratio will be applied to image</ui:description>
+          <ct:enumeration value="LANDSCAPE">
+            <ui:label>Landscape</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="PORTRAIT">
+            <ui:label>Portrait</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="SQUARE">
+            <ui:label>Square</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="WIDE">
+            <ui:label>Wide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="FREE">
+            <ui:label>Free</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="HIDE">
+            <ui:label>Hide</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please choose</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="teaserStyle" type="collection" mime-type="text/plain" src="/webservice/escenic/wf/enumerations/teaserStyle" select="content">
+          <ui:label>Teaser style</ui:label>
+          <ui:description>Teaser style to customize the appearance of article teasers</ui:description>
+        </ct:field>
+        <ct:field name="titleSize" type="enumeration">
+          <ui:label>Title size</ui:label>
+          <ui:description>Modifies the text size of the title.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+        <ct:field name="leadTextSize" type="enumeration">
+          <ui:label>Lead text size</ui:label>
+          <ui:description>Modifies the text size of the lead text.</ui:description>
+          <ct:enumeration value="text-biggest">
+            <ui:label>Biggest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-bigger">
+            <ui:label>Bigger</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-big">
+            <ui:label>Big</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="regular">
+            <ui:label>Regular</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-small">
+            <ui:label>Small</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smaller">
+            <ui:label>Smaller</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="text-smallest">
+            <ui:label>Smallest</ui:label>
+          </ct:enumeration>
+          <ct:enumeration value="unspecified">
+            <ui:label>Please specify</ui:label>
+          </ct:enumeration>
+          <ui:value-if-unset>unspecified</ui:value-if-unset>
+        </ct:field>
+      </ct:options>
+      <allow-content-types>
+        <ref-content-type-group name="contents" />
+        <ref-content-type-group name="custom-contents" />
+      </allow-content-types>
+    </area>
+  </group>
+  <content-type-group name="custom-widgets">
+    <ref-content-type name="widget_teaserGrid" />
+  </content-type-group>
+</groups>
+

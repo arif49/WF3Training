@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * File           : $Header: //depot/escenic/widget-framework/trunk/widget-framework-core/src/main/webapp/META-INF/escenic/publication-resources/escenic/content-type#2 $
+ * Last edited by : $Author: shah $ $Date: 2010/05/10 $
+ * Version        : $Revision: #2 $
+ *
+ * Copyright (C) 2009 Escenic AS.
+ * All Rights Reserved.  No use, copying or distribution of this
+ * work may be made except in accordance with a valid license
+ * agreement from Escenic AS.  This notice must be included on
+ * all copies, modifications and derivatives of this work.
+-->
+
+<content-types xmlns="http://xmlns.escenic.com/2008/content-type"
+               xmlns:ui="http://xmlns.escenic.com/2008/interface-hints"
+               xmlns:rep="http://xmlns.escenic.com/2009/representations"
+               version="4">
+  <!-- field group for helloWorld widget -->
+  <field-group name="helloWorld-widget-basic-fields">
+    <field name="view" type="enumeration">
+      <ui:label>View</ui:label>
+      <ui:description>The view of the widget</ui:description>
+      <enumeration value="default">
+        <ui:label>Default</ui:label>
+      </enumeration>
+      <constraints>
+        <required>true</required>
+      </constraints>
+      <ui:value-if-unset>default</ui:value-if-unset>
+    </field>
+    <field name="message" type="basic" mime-type="text/plain">
+      <ui:label>Message</ui:label>
+      <ui:description>The message to be printed</ui:description>
+      <ui:layout rows="5" cols="40"/>
+    </field>
+  </field-group>
+
+  <!-- content type definition for helloWorld widget-->
+  <content-type name="widget_helloWorld">
+    <ui:icon>generic</ui:icon>
+    <ui:label>Hello World Widget</ui:label>
+    <ui:description>A minimalistic example of a custom widget</ui:description>
+    <ui:title-field>title</ui:title-field>
+
+    <panel name="general">
+      <ui:label>General</ui:label>
+      <ui:description>The basic fields of helloWorld widget</ui:description>
+      <ref-field-group name="basic-widget-fields"/>
+      <ref-field-group name="helloWorld-widget-basic-fields"/>
+    </panel>
+
+    <panel name="advanced">
+      <ui:label>Advanced</ui:label>
+      <ui:description>The advanced fields</ui:description>
+      <ref-field-group name="basic-widget-style-fields"/>
+    </panel>
+
+    <panel name="caching">
+      <ui:label>Caching</ui:label>
+      <ui:description>Allows you to control web cache settings</ui:description>
+      <ref-field-group name="caching-basic-fields"/>
+      <ref-field-group name="cache-control-public-fields"/>
+    </panel>
+
+    <summary>
+      <ui:label>Content Summary</ui:label>
+      <field name="title" type="basic" mime-type="text/plain">
+        <ui:label>Title</ui:label>
+      </field>
+    </summary>
+  </content-type>
+</content-types>

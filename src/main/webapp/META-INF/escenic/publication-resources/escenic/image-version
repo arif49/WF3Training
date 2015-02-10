@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+ * Copyright (C) 2009 Escenic AS.
+ * All Rights Reserved.  No use, copying or distribution of this
+ * work may be made except in accordance with a valid license
+ * agreement from Escenic AS.  This notice must be included on
+ * all copies, modifications and derivatives of this work.
+-->
+
+<imageDef xmlns="http://xmlns.escenic.com/2008/image-versions">
+  <originalVersion id="original">
+    <label>Original</label>
+  </originalVersion>
+
+  <version id="thumbnail">
+    <label>Thumbnail</label>
+    <maxWidth pix="75"/>
+    <maxHeight pix="75"/>
+    <format name="jpg" />
+  </version>
+
+  <version id="default">
+    <label>Default</label>
+    <maxWidth pix="100"/>
+    <maxHeight pix="150"/>
+  </version>
+
+  <version id="big">
+    <label>Big</label>
+    <maxHeight pix="100"/>
+    <fallback operation="skip"/>
+    <format name="jpeg" quality="0.75"/>
+  </version>
+
+  <version id="ginormous">
+    <label>Ginormous</label>
+    <maxWidth pix="2000"/>
+    <fallback operation="resize"/>
+    <format name="png" quality="0.80"/>
+  </version>
+
+</imageDef>

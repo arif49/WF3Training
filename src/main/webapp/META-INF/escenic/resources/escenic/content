@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * File           : $Header: //depot/projects/widget-framework/src/main/webapp/META-INF/escenic/resources/escenic/content#1 $
+ * Last edited by : $Author: shaon $ $Date: 2009/06/22 $
+ * Version        : $Revision: #1 $
+ *
+ * Copyright (C) 2009 Escenic AS.
+ * All Rights Reserved.  No use, copying or distribution of this
+ * work may be made except in accordance with a valid license
+ * agreement from Escenic AS.  This notice must be included on
+ * all copies, modifications and derivatives of this work.
+-->
+<escenic xmlns="http://xmlns.escenic.com/2009/import" version="2.0">
+  <section name="Front Page" unique-name="ece_frontpage" />
+  <section name="News" unique-name="news">
+    <unique-name>news</unique-name>
+    <parent unique-name="ece_frontpage" />
+    <directory>news</directory>
+  </section>
+  <section name="Shows" unique-name="shows">
+    <unique-name>shows</unique-name>
+    <parent unique-name="ece_frontpage" />
+    <directory>shows</directory>
+  </section>
+  <section name="Video" unique-name="video">
+    <unique-name>video</unique-name>
+    <parent unique-name="ece_frontpage" />
+    <directory>video</directory>
+  </section>
+  <section name="Search" unique-name="search">
+    <parent unique-name="ece_frontpage" />
+    <unique-name>search</unique-name>
+    <directory>search</directory>
+  </section>
+  <section name="Config" unique-name="config">
+    <parent unique-name="ece_frontpage" />
+    <unique-name>config</unique-name>
+    <directory>config</directory>
+    <priority value="1000" />
+  </section>
+  <section name="International" unique-name="international">
+    <unique-name>international</unique-name>
+    <parent unique-name="news" />
+    <directory>international</directory>
+  </section>
+  <section name="Sports" unique-name="sports">
+    <unique-name>sports</unique-name>
+    <parent unique-name="news" />
+    <directory>sports</directory>
+  </section>
+  <section name="Lifestyle" unique-name="lifestyle">
+    <unique-name>lifestyle</unique-name>
+    <parent unique-name="news" />
+    <directory>lifestyle</directory>
+  </section>
+  <section name="Reports" unique-name="reports">
+    <unique-name>reports</unique-name>
+    <parent unique-name="video" />
+    <directory>movies</directory>
+  </section>
+  <section name="Programs" unique-name="programs">
+    <unique-name>programs</unique-name>
+    <parent unique-name="video" />
+    <directory>travel</directory>
+  </section>
+  <section name="Default" unique-name="config.default">
+    <parent unique-name="config" />
+    <unique-name>config.default</unique-name>
+    <directory>config_default</directory>
+  </section>
+  <section name="Inline template" unique-name="config.inline">
+    <parent unique-name="config" />
+    <unique-name>config.inline</unique-name>
+    <directory>config_inline</directory>
+  </section>
+  <section name="Section templates" unique-name="config.default.section">
+    <parent unique-name="config.default" />
+    <unique-name>config.default.section</unique-name>
+    <directory>config_default_section</directory>
+  </section>
+  <section name="Article templates" unique-name="config.default.article">
+    <parent unique-name="config.default" />
+    <unique-name>config.default.article</unique-name>
+    <directory>config_article</directory>
+  </section>
+  <section name="Topic templates" unique-name="config.default.topic">
+    F
+    <parent unique-name="config.default" />
+    <unique-name>config.default.topic</unique-name>
+    <directory>config_default_topic</directory>
+  </section>
+  <section name="Tag templates" unique-name="config.default.tag">
+    <parent unique-name="config.default" />
+    <unique-name>config.default.tag</unique-name>
+    <directory>config_default_tag</directory>
+  </section>
+  <section name="Master templates" unique-name="config.default.master">
+    <parent unique-name="config.default" />
+    <unique-name>config.default.master</unique-name>
+    <directory>config_default_master</directory>
+  </section>
+  <section name="Frontpage template" unique-name="config.default.section.ece_frontpage">
+    <parent unique-name="config.default.section" />
+    <unique-name>config.default.section.ece_frontpage</unique-name>
+    <directory>config_default_section_ece_frontpage</directory>
+  </section>
+  <section name="Search page template" unique-name="config.default.section.search">
+    <parent unique-name="config.default.section" />
+    <unique-name>config.default.section.search</unique-name>
+    <directory>config_default_section_search</directory>
+  </section>
+  <section name="Picture page template" unique-name="config.default.article.type.picture">
+    <parent unique-name="config.default.article" />
+    <unique-name>config.default.article.type.picture</unique-name>
+    <directory>config_default_article_type_picture</directory>
+  </section>
+  <section name="Story page template" unique-name="config.default.article.type.story">
+    <parent unique-name="config.default.article" />
+    <unique-name>config.default.article.type.story</unique-name>
+    <directory>config_default_article_type_story</directory>
+  </section>
+</escenic>
+
